@@ -1,4 +1,4 @@
-package dev.victor.jbank.entities;
+package dev.victor.jbank.entity;
 
 import jakarta.persistence.*;
 
