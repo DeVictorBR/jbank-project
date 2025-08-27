@@ -3,6 +3,7 @@ package dev.victor.jbank.controller;
 import dev.victor.jbank.controller.dto.CreateWalletDto;
 import dev.victor.jbank.entity.Wallet;
 import dev.victor.jbank.service.WalletService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,7 @@ public class WalletController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createWallet(@RequestBody CreateWalletDto dto) {
+    public ResponseEntity<Void> createWallet(@RequestBody @Valid CreateWalletDto dto) {
         Wallet wallet = walletService.createWallet(dto);
 
         return ResponseEntity.created(URI.create("/wallets/" + wallet.getWalletId().toString())).build();
