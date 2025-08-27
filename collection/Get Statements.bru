@@ -1,0 +1,20 @@
+meta {
+  name: Get Statements
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8080/wallets/f09ee031-6c6b-4609-b411-f0141b3be7ed/statements?page=2&pageSize=1
+  body: none
+  auth: inherit
+}
+
+params:query {
+  page: 2
+  pageSize: 1
+}
+
+settings {
+  encodeUrl: true
+}
