@@ -2,6 +2,7 @@ package dev.victor.jbank.controller;
 
 import dev.victor.jbank.controller.dto.CreateWalletDto;
 import dev.victor.jbank.controller.dto.DepositMoneyDto;
+import dev.victor.jbank.controller.dto.StatementDto;
 import dev.victor.jbank.entity.Wallet;
 import dev.victor.jbank.service.WalletService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,5 +44,14 @@ public class WalletController {
                                              HttpServletRequest request) {
          walletService.depositMoney(walletId, dto, request.getAttribute("x-user-ip").toString());
          return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "/{walletId}/statements")
+    public ResponseEntity<StatementDto> getStatements(@PathVariable("walletId") UUID walletId,
+                                                      @RequestParam(name = "page", defaultValue = "0") Integer page,
+                                                      @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
+                                                      ) {
+        var statement = walletService.getStatements(walletId, page, pageSize);
+        return ResponseEntity.ok(statement);
     }
 }
